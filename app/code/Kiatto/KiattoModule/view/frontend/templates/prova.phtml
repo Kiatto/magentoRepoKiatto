@@ -1,0 +1,7 @@
+<h2>Lista Prodotti</h2>
+
+<ul>
+    <?php foreach ($this->getProducts() as $product): ?>
+        <li><?php echo $product->getName() ?></li>
+    <?php endforeach; ?>
+</ul>
