@@ -1,7 +1,38 @@
 <h2>Lista Prodotti</h2>
-
+<?php
+$productCollection = $this->getProductCollection();
+$imageBlock =  $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
+$showCart = true;
+$type = 'widget-new-grid';
+$viewMode = 'grid'; 
+$image = 'category_page_grid';
+$pos = $block->getPositioned();
+?>
 <ul>
     <?php foreach ($this->getProducts() as $product): ?>
         <li><?php echo $product->getName() ?></li>
+        <?php $productImage = $imageBlock->getImage($product, 'category_page_grid'); 
+                if ($pos == null) {                                                        
+                    $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                        . 'top:' . $productImage->getHeight() . 'px;"';
+                }
+                ?>
+         
+         <li class="product-item">
+             <div class="product-item-info"></div>
+            <a href="<?php echo $product->getProductUrl(); ?>"><?php echo $productImage->toHtml()  ?></a>
+            <div class="product details product-item-details">
+                <strong class="product name product-item-name">
+                <a class="product-item-link"  href="<?php echo $product->getProductUrl() ?>">
+                <?php echo $product->getName(); ?>
+                </a>
+                </strong>
+            </div>
+        <?php if ($product->getIsSalable()): ?>
+                            <div class="stock available"><span><?php echo ('In stock') ?></span></div>
+                            <?php else: ?>
+                            <div class="stock unavailable"><span><?php echo ('Out of stock') ?></span></div>
+                            <?php endif; ?>
+                           
     <?php endforeach; ?>
 </ul>
