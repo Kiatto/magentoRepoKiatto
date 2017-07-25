@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Kiatto_KiattoModule::helloworld" title="KiattoMenu" module="Kiatto_KiattoModule" sortOrder="51" resource="Kiatto_KiattoModule::helloworld"/>
+	<add id="Kiatto_KiattoModule::post" title="Dovrebbe" module="Kiatto_KiattoModule" sortOrder="10" action="kiatto_kiattomodule/post" resource="Kiatto_KiattoModule::post" parent="Kiatto_KiattoModule::helloworld"/>
+	<add id="Kiatto_KiattoModule::hello_configuration" title="ConfiguraQualcosa" module="Kiatto_KiattoModule" sortOrder="99" parent="Kiatto_KiattoModule::helloworld" action="adminhtml/system_config/edit/section/helloworld" resource="Kiatto_KiattoModule::helloworld_configuration"/>
+    
+    </menu>
+</config>
