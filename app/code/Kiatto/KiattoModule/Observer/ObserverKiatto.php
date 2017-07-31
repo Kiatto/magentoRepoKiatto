@@ -4,34 +4,29 @@ use Magento\Framework\Event\ObserverInterface;
 
 class ObserverKiatto implements ObserverInterface
 {
-  public function __construct()
-  {
+    protected $scopeConfig;
     
+  public function __construct( \Magento\Framework\ObjectManagerInterface $objectManager ,
+                                \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig )
+  {
+      $this->scopeConfig = $objectManager;
+      $this->scopeConfig = $scopeConfig;
+      
   }
 
   public function execute(\Magento\Framework\Event\Observer $observer)
-  {
-    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-    //echo $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')
-    //        ->getValue('sales/general/issaleable/issaleable/visibile');
-    //$object = \Magento\Framework\DataObject(['product' => $this, 'is_salable' => $salable]);
-        
-    $observed =  $observer->getData('salable');
-    /*if($observer){
-            echo "observer";
-        }
-        else{
-            echo "non observer";
-        }
-    */
-      $product = $observer->getProduct();
-        $salable = $observer->getSalable(); 
-        $observed =  $observer->getData('$this->salable');
-        if($product->getIsSalable())
-        {
-            $salable->setIsSalable(false);
-        }
+{
+  $observed_product =  $observer->getData('salable');
+    
+  $is_store_saleable = $this->scopeConfig->getValue('issalesable/option/visibile',\Magento\Store\Model\ScopeInterface::SCOPE_STORES);
+  
+  
+  
+        if(!$is_store_saleable)
+      {
+        $observed_product->setIsSalable($is_store_saleable);
+      }
         return $this;
-        
+               
         }
   }

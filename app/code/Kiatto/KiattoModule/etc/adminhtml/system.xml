@@ -12,7 +12,6 @@
 				<label>option</label>
 				<field id="visibile" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
 					<label>visibile</label>
-					<comment/>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
 			</group>

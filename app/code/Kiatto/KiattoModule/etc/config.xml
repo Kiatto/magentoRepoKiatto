@@ -3,8 +3,8 @@
 	<default>
 		<issalesable>
 			<option>
-				<visibile/>
+                            <visibile>1</visibile>
 			</option>
 		</issalesable>
-	</default>
+        </default>
 </config>
